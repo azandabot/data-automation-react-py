@@ -113,38 +113,6 @@ Ensure you have the following installed:
 1. Ensure both the backend and frontend servers are running.
 2. Open your browser and navigate to `http://localhost:3000`.
 
-## Project Structure
-
-time-series-visualization/
-├── backend/
-│ ├── db/
-│ │ ├── init.py
-│ │ ├── db.py
-│ ├── models/
-│ │ ├── init.py
-│ ├── controllers/
-│ │ ├── init.py
-│ ├── utils/
-│ │ ├── init.py
-│ ├── routes/
-│ │ ├── init.py
-│ ├── app.py
-│ ├── config.py
-│ ├── migrations/
-│ ├── Pipfile
-│ ├── Pipfile.lock
-│ └── .env
-└── frontend/
-├── public/
-├── src/
-│ ├── components/
-│ ├── main.js
-├── index.html
-├── package.json
-├── package-lock.json
-└── .env
-
-
 ## Explanation and Decisions
 
 This application was developed to provide a simple yet effective interface for visualizing time-series data. Flask was chosen for the backend due to its simplicity and flexibility, while React.js was chosen for the frontend for its powerful component-based architecture. The application uses Bootstrap 5.3 for styling and TanStack React Query for performing CRUD operations.
