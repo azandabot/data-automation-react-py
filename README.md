@@ -1,4 +1,4 @@
-# Time-Series Data Visualization Web Application
+# Data Visio
 
 ## Overview
 This project is a simple web application designed to visualize time-series data from various sensors in a factory setting. The application comprises a React frontend, a Flask backend, and a PostgreSQL database. The purpose of this application is to allow users to view numeric and text parameter data from different devices over time.
@@ -34,29 +34,23 @@ cd backend
 ```
 2. Create a virtual environment and activate it:
 ```bash
-python -m venv venv
-source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+pipenv install
+pipenv shell
 ```
-3. Install the required dependencies:
-```bash
-pip install -r requirements.txt
-```
-4. Set up environment variables:
+3. Set up environment variables:
 Create a `.env` file in the `backend` directory with the following content:
 ```plaintext
-FLASK_APP=app.py
-DATABASE_URL=your-database-url
+DB_NAME=timeseries_db
+DB_USER=postgres
 ```
 5. Create the database:
-Make sure your database is set up and running. Update the `DATABASE_URL` in the `.env` file accordingly.
-6. Run database migrations:
+Make sure your database is set up and running. Update the credentials in the `.env` file accordingly.
+
+6. Run application:
 ```bash
-flask db upgrade
+python app.py
 ```
-7. Start the backend server:
-```bash
-flask run
-```
+
 #### 3. Set Up the Frontend
 1. Navigate to the `frontend` directory:
 ```bash
@@ -88,6 +82,7 @@ data-automation-react-py/
 │   ├── app.py
 │   ├── config.py
 │   ├── .env
+│   ├── tests
 │   ├── ...
 │
 ├── frontend/
