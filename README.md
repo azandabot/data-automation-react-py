@@ -1,6 +1,7 @@
 # Data Visio
 
-https://drive.google.com/file/d/1AY5NL0kRRAJQJfpJpu0wH9DfjBOIQ5qu/preview
+[![Data Visio](https://res.cloudinary.com/marcomontalbano/image/upload/v1716861937/video_to_markdown/images/google-drive--1AY5NL0kRRAJQJfpJpu0wH9DfjBOIQ5qu-c05b58ac6eb4c4700831b2b3070cd403.jpg)](https://drive.google.com/file/d/1AY5NL0kRRAJQJfpJpu0wH9DfjBOIQ5qu/preview "Data Visio")
+
 
 ## Overview
 This project is a simple web application designed to visualize time-series data from various sensors in a factory setting. The application comprises a React frontend, a Flask backend, and a PostgreSQL database. The purpose of this application is to allow users to view numeric and text parameter data from different devices over time.
