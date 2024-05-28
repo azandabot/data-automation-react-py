@@ -1,5 +1,7 @@
 # Data Visio
 
+https://app.screencastify.com/v3/watch/72FjWGEtywewcUueC8PG?width=444
+
 ## Overview
 This project is a simple web application designed to visualize time-series data from various sensors in a factory setting. The application comprises a React frontend, a Flask backend, and a PostgreSQL database. The purpose of this application is to allow users to view numeric and text parameter data from different devices over time.
 
