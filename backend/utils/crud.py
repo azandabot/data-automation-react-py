@@ -1,5 +1,15 @@
 from flask import jsonify
 from db import db
+from models import Devices
+from sqlalchemy import func
+
+
+def serialize_parameter_with_device_and_count(parameter, device_name, param_count):
+    serialized_parameter = parameter.serialize()
+    serialized_parameter['device_name'] = device_name
+    serialized_parameter['param_count'] = param_count
+    return serialized_parameter
+
 
 def execute_stmt(model, params, operation):
     """
@@ -39,6 +49,57 @@ def execute_stmt(model, params, operation):
             'message': 'Records fetched successfully!', 
             'data': [record.serialize() for record in records]
         }), 200
+    
+    elif operation == 'GET_FREQUENCY':
+        if 'MOST' in params:
+            result = db.session.query(
+                        model.name, func.count(model.name).label('count')
+                    ).group_by(model.name).order_by(func.count(model.name)).first()
+        else:
+          result = db.session.query(
+                        model.name, func.count(model.name).label('count')
+                    ).group_by(model.name).order_by(func.count(model.name).desc()).first()
+        
+        return jsonify({ 
+            'request_method': 'GET', 
+            'message': 'Records fetched successfully!', 
+            'data': result[0] + ": " + str(result[1]) 
+        }), 200
+    
+    elif operation == 'GET_TOTAL':
+        total = db.session.query(func.count(model.id)).scalar()
+        
+        return jsonify({ 
+            'request_method': 'GET', 
+            'message': 'Total Fetched successfully!', 
+            'data': total
+        }), 200
+    
+    elif operation == 'GET_CHART':
+        if 'TOP_10' in params:
+            result = db.session.query(
+                model.name, func.count(model.name).label('count')
+            ).group_by(model.name).order_by(func.count(model.name)).limit(10)
+            result = [{
+                'name': row.name,
+                'total': row.count
+            } for row in result]
+
+        else:
+            result = db.session.query(
+                    Devices.name.label('device_name'),
+                    func.count(model.id).label('total')
+                ).outerjoin(model, Devices.id == model.device_id).group_by(Devices.id).limit(10).all()
+            result = [{
+                'name': row.device_name,
+                'total': row.total
+            } for row in result]
+
+        return jsonify({ 
+            'request_method': 'GET', 
+            'message': 'Total Fetched successfully!', 
+            'data': result
+        }), 200
 
     elif operation == 'POST':
         if model == Devices:
@@ -57,6 +118,8 @@ def execute_stmt(model, params, operation):
             'request_method': 'POST',
             'message': 'Record saved successfully!'
         }), 201
+
+
     
     elif operation == 'PUT':
         # Update an existing record

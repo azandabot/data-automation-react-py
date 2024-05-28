@@ -4,7 +4,7 @@ from sqlalchemy.dialects.postgresql import UUID
 
 class Devices(db.Model):
     id = Column(Integer, primary_key=True)
-    user_token = Column(UUID(as_uuid=True), nullable=False)
+    user_token = Column(UUID(as_uuid=True), default="0f0e9c8e-30a0-47a4-8e9d-6e8ebdf91b9e", nullable=True)
     name = Column(String(50), nullable=False, unique=True)
     active = Column(String(1), default='Y', nullable=False)
     created_at = Column(DateTime, default=func.current_timestamp())

@@ -11,8 +11,11 @@ python-dotenv = "*"
 marshmallow = "*"
 flask-migrate = "*"
 marshmallow-sqlalchemy = "*"
+flask-cors = "*"
 
 [dev-packages]
+pytest = "*"
+pytest-flask = "*"
 
 [requires]
 python_version = "3.12"
